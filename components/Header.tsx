@@ -1,4 +1,6 @@
 import Image from 'next/image'
+//auth
+import { signOut, useSession } from 'next-auth/client'
 
 import  {
     BellIcon,
@@ -20,6 +22,8 @@ import {
  import HeaderIcon from './HeaderIcon'
 
 const Header = () => {
+    const [session ] = useSession()
+
     return(
         <header className='sticky top-0 z-50 flex items-center shadow-md p-2 lg:px-5 bg-white'>
             <section className='flex items-center'>
@@ -46,8 +50,18 @@ const Header = () => {
                 </div>
             </section>
 
-            <section className='flex items-center sm:space-x-2 justify-end'>
-                <p className='pr-3 whitespace-nowrap font-semibold'>HAHS</p>
+            <section className='flex items-center sm:space-x-2 justify-end w-16 md:w-36 xl:w-auto'>
+                <Image 
+                    src={session?.user?.image as string}
+                    onClick={() => signOut()}
+                    className='rounded-full cursor-pointer'
+                    width={40}
+                    height={40}
+                    layout='fixed'
+                />
+                <p className='hidden md:block truncate pr-3 whitespace-nowrap font-semibold'>
+                    { session?.user?.name }
+                </p>
 
                 <ViewGridIcon className='icon' />
                 <ChatIcon className='icon' />
