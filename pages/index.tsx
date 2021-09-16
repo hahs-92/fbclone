@@ -7,6 +7,7 @@ import { getSession } from 'next-auth/client'
 import Header from '../components/Header'
 import Login from '../components/Login'
 import SideBar from '../components/SideBar'
+import Feed from '../components/Feed'
 
 const Home: NextPage = ({ session }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
  
@@ -21,8 +22,9 @@ const Home: NextPage = ({ session }: InferGetServerSidePropsType<typeof getServe
       </Head>
 
       <Header />
-      <main>
+      <main className='flex'>
         <SideBar />
+        <Feed />
       </main>
      
     </div>

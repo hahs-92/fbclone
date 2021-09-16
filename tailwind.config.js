@@ -13,6 +13,7 @@ module.exports = {
       backgroundBlendMode: ['hover', 'focus', 'group-hover'],
       borderColor: ['active', 'hover'],
       borderWidth: ['active'],
+      animation: ['hover', 'focus', 'group-hover'],
     },
   },
   plugins: [],
