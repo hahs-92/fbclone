@@ -6,13 +6,14 @@ import { getSession } from 'next-auth/client'
 //components
 import Header from '../components/Header'
 import Login from '../components/Login'
+import SideBar from '../components/SideBar'
 
 const Home: NextPage = ({ session }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
  
   if(!session) return <Login />
   
   return (
-    <div>
+    <div className='min-h-screen bg-gray-100 overflow-hidden'>
       <Head>
         <title>Facebook Clone</title>
         <meta name="description" content="This App is a clone of Facebook; development for HAHS" />
@@ -20,7 +21,9 @@ const Home: NextPage = ({ session }: InferGetServerSidePropsType<typeof getServe
       </Head>
 
       <Header />
-
+      <main>
+        <SideBar />
+      </main>
      
     </div>
   )

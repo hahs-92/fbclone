@@ -4,7 +4,6 @@ import { signOut, useSession } from 'next-auth/client'
 
 import  {
     BellIcon,
-    ChatAltIcon,
     ChatIcon,
     ChevronDownIcon,
     HomeIcon,
