@@ -17,5 +17,7 @@ module.exports = {
       brightness: ['hover', 'focus'],
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ],
 }

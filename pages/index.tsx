@@ -8,13 +8,14 @@ import Header from '../components/Header'
 import Login from '../components/Login'
 import SideBar from '../components/SideBar'
 import Feed from '../components/Feed'
+import Widgest from '../components/Widgest'
 
 const Home: NextPage = ({ session }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
  
   if(!session) return <Login />
   
   return (
-    <div className='min-h-screen bg-gray-100 overflow-hidden'>
+    <div className='h-screen bg-gray-100 overflow-hidden'>
       <Head>
         <title>Facebook Clone</title>
         <meta name="description" content="This App is a clone of Facebook; development for HAHS" />
@@ -25,6 +26,7 @@ const Home: NextPage = ({ session }: InferGetServerSidePropsType<typeof getServe
       <main className='flex'>
         <SideBar />
         <Feed />
+        <Widgest />
       </main>
      
     </div>
