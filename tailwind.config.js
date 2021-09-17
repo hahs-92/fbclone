@@ -14,6 +14,7 @@ module.exports = {
       borderColor: ['active', 'hover'],
       borderWidth: ['active'],
       animation: ['hover', 'focus', 'group-hover'],
+      brightness: ['hover', 'focus'],
     },
   },
   plugins: [],
