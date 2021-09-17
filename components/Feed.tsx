@@ -1,6 +1,7 @@
 //components
 import Stories from "./Stories"
 import InputBox from "./InputBox"
+import Posts from "./Posts"
 
 const Feed = () => {
     return(
@@ -8,6 +9,7 @@ const Feed = () => {
             <div className='mx-auto max-w-md md:max-w-lg lg:max-w-2xl'>
                 <Stories />
                 <InputBox />
+                <Posts />
             </div>
         </section>
     )
