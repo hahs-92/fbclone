@@ -67,9 +67,9 @@ const InputBox = () => {
 
     return(
         <section className='mt-6 p-2 bg-white rounded-2xl shadow-md text-gray-500 font-medium'>
-            <div className='flex space-x-4 items-center p-4'>
+            <div className='flex justify-evenly space-x-4 items-center h-20'>
                 <Image 
-                    className='rounded-full'
+                    className='hidden sm:flex rounded-full'
                     src={session?.user?.image as string}
                     width={40}
                     height={40}
@@ -77,7 +77,7 @@ const InputBox = () => {
                 />
                 <form className='flex flex-1' onSubmit={ sendPost}>
                     <input 
-                        className='flex-grow px-5 focus:outline-none rounded-full h-12 bg-gray-100 ' 
+                        className='flex-grow px-5 w-full focus:outline-none rounded-full h-12 bg-gray-100 ' 
                         ref={inputRef} 
                         type="text" 
                         placeholder={`What's on your mind, ${session?.user?.name}?`} 
@@ -96,12 +96,12 @@ const InputBox = () => {
             <div className='flex justify-evenly p-3 border-t'>
                 <div className='inputIcon'>
                      <VideoCameraIcon className='h-7 text-red-500'/>
-                     <p className='text-xs sm:text-sm xl:text-base'>LIve Video</p>
+                     <p className='hidden sm:flex text-xs sm:text-sm xl:text-base'>LIve Video</p>
                 </div>
 
                 <div className='inputIcon' onClick={() => filepickerRef.current?.click()}>
                     <CameraIcon className='h-7 text-green-400'/>
-                    <p className='text-xs sm:text-sm xl:text-base'>Photo/Video</p>
+                    <p className='hidden sm:flex text-xs sm:text-sm xl:text-base'>Photo/Video</p>
                     <input
                         ref={ filepickerRef}
                         type="file" 
@@ -111,7 +111,7 @@ const InputBox = () => {
 
                 <div className='inputIcon'>
                     <EmojiHappyIcon className='h-7 text-yellow-300'/>
-                    <p className='text-xs sm:text-sm xl:text-base'>Feeling/Activity</p>
+                    <p className='hidden sm:flex text-xs sm:text-sm xl:text-base'>Feeling/Activity</p>
                 </div>
             </div>
         </section>

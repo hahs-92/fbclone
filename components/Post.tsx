@@ -6,10 +6,10 @@ import { ChatAltIcon, ShareIcon, ThumbUpIcon } from '@heroicons/react/outline'
 type PostProps = {
     name: string,
     message: string,
-    email: string,
+    email?: string,
     timestamp: string | any ,
     image: string,
-    postImage: string
+    postImage?: string
 }
 
 const Post: NextPage<PostProps> = ({
@@ -28,7 +28,13 @@ const Post: NextPage<PostProps> = ({
                     />
                     <div>
                         <p className='font-medium'>{name}</p>
-                        <p className='text-xs text-gray-400'>{new Date(timestamp?.toDate()).toLocaleString()}</p>
+                        {
+                            timestamp ? (
+                                <p className='text-xs text-gray-400'>{new Date(timestamp?.toDate()).toLocaleString()}</p>
+                            ) : (
+                                <p className='text-xs text-gray-400'>Loading...</p>
+                            )
+                        }
                     </div>
                 </div>
 

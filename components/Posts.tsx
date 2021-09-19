@@ -1,3 +1,4 @@
+import type { NextPage } from 'next'
 //firebase-hooks
 import {useCollection } from 'react-firebase-hooks/firestore'
 //firebase
@@ -5,24 +6,43 @@ import { db } from '../firebase'
 //components
 import Post from './Post'
 
-const Posts = () => {
+type PostsProps = {
+    posts: Post[]
+}
+
+const Posts: NextPage<PostsProps> = ({posts}) => {
     const [realtimePosts, loading, error] = useCollection(
         db.collection('posts').orderBy('timestamp', 'desc')
     )
 
     return(
         <section>
-            { realtimePosts?.docs.map(post => (
-                <Post 
-                    key={post.id}
-                    name={ post.data().name }
-                    message={post.data().message}
-                    email={ post.data().email }
-                    timestamp={ post.data().timestamp }
-                    image={ post.data().image }
-                    postImage={ post.data().postImage}
-                />
-            ))}
+            { 
+                realtimePosts ? 
+                realtimePosts?.docs.map(post => (
+                    <Post 
+                        key={post.id}
+                        name={ post.data().name }
+                        message={post.data().message}
+                        email={ post.data().email }
+                        timestamp={ post.data().timestamp }
+                        image={ post.data().image }
+                        postImage={ post.data().postImage}
+                    />
+                ))
+                : 
+                    (posts.map(post => (
+                        <Post 
+                        key={post.id}
+                        name={ post.name }
+                        message={post.message}
+                        email={ post.email }
+                        timestamp={ post.timestamp }
+                        image={ post.image }
+                        postImage={ post.postImage}
+                    />
+                    )))
+            }
         </section>
     )
 }

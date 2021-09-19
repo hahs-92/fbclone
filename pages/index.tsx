@@ -9,10 +9,14 @@ import Login from '../components/Login'
 import SideBar from '../components/SideBar'
 import Feed from '../components/Feed'
 import Widgest from '../components/Widgest'
+//firebase
+import { db } from '../firebase'
 
-const Home: NextPage = ({ session }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Home: NextPage = ({ session, posts }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
  
   if(!session) return <Login />
+
+  console.log("posts: ", posts)
   
   return (
     <div className='h-screen bg-gray-100 overflow-hidden'>
@@ -25,7 +29,7 @@ const Home: NextPage = ({ session }: InferGetServerSidePropsType<typeof getServe
       <Header />
       <main className='flex'>
         <SideBar />
-        <Feed />
+        <Feed  posts={posts}/>
         <Widgest />
       </main>
      
@@ -38,9 +42,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   //Get the user
   const session = await getSession(context)
 
+  const posts = await db.collection('posts').orderBy('timestamp','desc').get()
+
+  const docs = posts.docs.map(post => ({
+    id: post.id,
+    ...post.data(),
+    timestamp: null
+  }))
+
   return {
     props: {
-      session
+      session,
+      posts: docs
     },
   }
 }
